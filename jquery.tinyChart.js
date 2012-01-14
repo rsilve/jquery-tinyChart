@@ -20,7 +20,7 @@ limitations under the License.
     var create_bars = function (comp, options, data) {
     	var w = $(comp).width(); 
         var h = $(comp).height();
-        var w_unit = options.w_unit;
+        var wunit = options.wunit;
             
     	var max = Math.max.apply(0, data);
         var r = h/max;
@@ -32,14 +32,14 @@ limitations under the License.
         $.each(data, function(index, item) {
                 var $bar = $('<div class="chart_bar"/>');
                 $bar.height(item * r);
-                $bar.width(w_unit);
+                $bar.width(wunit);
                 $bar.css("position","absolute");
                 $bar.css("bottom", "0");
                 $bar.css("left", x_offset);
            
                 $container.append($bar);
             
-                x_offset += w_unit;
+                x_offset += wunit;
         });
     }
     
@@ -66,7 +66,7 @@ limitations under the License.
     
     var options = {
         type : 'bar',
-        w_unit : 11,
+        wunit : 11,
         data: [0]
     };
     
