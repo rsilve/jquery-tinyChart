@@ -1,0 +1,23 @@
+=pod
+
+=head1 Usage
+
+Simple way
+
+ $('#chart').tinyChart(
+	{ data : [1, 2, 3, 4, 5, 6, 4, 3, 6, 36] });
+ });
+         
+Advanced way
+
+ $('#chart').tinyChart(
+	{ data : function(callback) {
+				// get data
+				var d = [1, 2, 3, 4, 5, 6, 4, 3, 6, 36];
+				// draw chart
+        		callback(d); 
+        	 }	
+    }
+ });
+         
+=cut
