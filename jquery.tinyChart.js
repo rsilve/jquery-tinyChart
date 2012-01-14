@@ -17,21 +17,19 @@ limitations under the License.
            
 (function($) {
     
-    var bar = function(comp, options) {
-            var w = $(comp).width(); 
-            var h = $(comp).height();
-        
-            var w_unit = options.w_unit;
-            var data = options.data;
+    var create_bars = function (comp, options, data) {
+    	var w = $(comp).width(); 
+        var h = $(comp).height();
+        var w_unit = options.w_unit;
             
-            var max = Math.max.apply(0, data);
-            var r = h/max;
+    	var max = Math.max.apply(0, data);
+        var r = h/max;
         
-            var $container = $(comp);
-            $container.css("position","relative");
+    	var $container = $(comp);
+        $container.css("position","relative");
         
-            var x_offset = 0;
-            $.each(data, function(index, item) {
+    	var x_offset = 0;
+        $.each(data, function(index, item) {
                 var $bar = $('<div class="chart_bar"/>');
                 $bar.height(item * r);
                 $bar.width(w_unit);
@@ -42,7 +40,20 @@ limitations under the License.
                 $container.append($bar);
             
                 x_offset += w_unit;
-            });
+        });
+    }
+    
+    var bar = function(comp, options) {
+            
+            var data = options.data;
+            
+            if (typeof data == "function") {
+            	data(function(d) { create_bars(comp, options, d) } )
+            } else {
+            	create_bars(comp, options, data);
+            }
+            
+            
         };
     
     var tinyChart = function(args) {
